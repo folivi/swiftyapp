@@ -9,11 +9,9 @@ let package = Package(
 	],
 	dependencies: [
 		.package(url: "https://github.com/PerfectlySoft/Perfect-HTTPServer.git", from: "3.0.0"),
-		.package(url: "https://github.com/PerfectlySoft/Perfect-MongoDB.git", from: "3.0.0"),
-		.package(url: "https://github.com/SwiftORM/MongoDB-StORM.git", from: "3.0.0"),
-
+		.package(url: "https://github.com/OpenKitten/MongoKitten.git", from: "4.0.0")
 	],
 	targets: [
-		.target(name: "PerfectTemplate", dependencies: ["PerfectHTTPServer", "MongoDBStORM", "PerfectMongoDB"]),
+		.target(name: "PerfectTemplate", dependencies: ["PerfectHTTPServer", "MongoKitten"]),
 	]
 )

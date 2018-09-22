@@ -1,58 +1,25 @@
-//
-//  main.swift
-//  PerfectTemplate
-//
-//  Created by Kyle Jessup on 2015-11-05.
-//	Copyright (C) 2015 PerfectlySoft, Inc.
-//
-//===----------------------------------------------------------------------===//
-//
-// This source file is part of the Perfect.org open source project
-//
-// Copyright (c) 2015 - 2016 PerfectlySoft Inc. and the Perfect project authors
-// Licensed under Apache License v2.0
-//
-// See http://perfect.org/licensing.html for license information
-//
-//===----------------------------------------------------------------------===//
-//
 
 import PerfectHTTP
 import PerfectHTTPServer
-
-import MongoDBStORM
-import StORM
+import MongoKitten
 import SwiftRandom
 
-
-MongoDBConnection.host = "localhost"
-MongoDBConnection.port = 27017
-MongoDBConnection.ssl = false
-MongoDBConnection.database = "caca"
-//MongoDBConnection.authModeType = MongoDBConnection.authModeType.none
-
-// An example request handler.
-// This 'handler' function can be referenced directly in the configuration below.
 func handler(request: HTTPRequest, response: HTTPResponse) {
-	let newEvent = EventModel()
-	newEvent.name = "caca prout prout"
+do {
+	let server = try Server("mongodb://localhost")
+	//let database = server["caca"]
+	let database = Database(named: "sandbox", atServer: server)
+	let usersCollection = database["events"]
 
-	do {
-	    try newEvent.save()
-	} catch  {
+	let documentArray = Array(try usersCollection.find())
+	print(documentArray)
 
-	}
-	let Event = EventModel()
-	print("----")
-	print(Event.findAll())
-	print("----")
-  do {
-  let events = try Event.find(cursor: StORMCursor(limit: 50, offset: 100))
-	print(events)
 
-  } catch {
+} catch {
 
-  }
+}
+
+
 // Respond with a simple message.
 	response.setHeader(.contentType, value: "text/html")
 	response.appendBody(string: "<html><title>Hello, world!</title><body>Hello, world!</body></html>")
