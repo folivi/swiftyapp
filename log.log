@@ -1,0 +1,2 @@
+[CRITICAL] [37A41A61-1E56-4271-8C4E-54911145CEC0] [2018-09-22 18:04:49 UTC+02:00] MongoDB Save error error(12, 11000, "E11000 duplicate key error collection: sandbox.events index: fb_id_1 dup key: { : null }")
+[CRITICAL] [16C55170-6DD4-4830-803C-2149FCB79A89] [2018-09-22 18:19:43 UTC+02:00] MongoDB Save error error(12, 11000, "E11000 duplicate key error collection: sandbox.events index: fb_id_1 dup key: { : null }")
